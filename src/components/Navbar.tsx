@@ -4,6 +4,7 @@ type Props = {}
 
 const Header = styled.header`
   width: 100%;
+  height: 87px;
   svg {
     width: 100%;
     background-color: #fff;
