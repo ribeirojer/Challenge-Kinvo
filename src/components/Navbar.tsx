@@ -3,11 +3,15 @@ import styled from "styled-components";
 type Props = {}
 
 const Header = styled.header`
-  width: 100%;
+  margin-bottom: -3px;
   height: 87px;
+
   svg {
     width: 100%;
+    height: 87px;
     background-color: #fff;
+    box-shadow: 0px 0px 10px 0px #ccc;
+    position: fixed;
   }
 `;
 
@@ -15,11 +19,7 @@ const Navbar = (props:any) => {
 
   return (
     <Header>
-      <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" width="1426" height="150" viewBox="0 0 1426 150">
-        <g id="Componente_40_1" data-name="Componente 40 – 1" transform="translate(30 27)">
-          <g transform="matrix(1, 0, 0, 1, -30, -27)" filter="url(#Retângulo_701)">
-            <rect id="Retângulo_701-2" data-name="Retângulo 701" width="1366" height="90" transform="translate(30 27)" fill="#fff"/>
-          </g>
+      <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" >
           <g id="Grupo_11761" data-name="Grupo 11761" transform="translate(1081 4207)">
             <circle id="Icon.BG" cx="15" cy="15" r="15" transform="translate(205 -4177)" fill="#5d41ac"/>
             <path id="União_229" data-name="União 229" d="M.942,9.558a.943.943,0,0,1,0-1.886h9.1a.943.943,0,0,1,0,1.886Zm0-3.837a.943.943,0,0,1,0-1.885h9.1a.943.943,0,0,1,0,1.885Zm0-3.837A.942.942,0,0,1,.942,0h9.1a.942.942,0,0,1,0,1.885Z" transform="translate(214.429 -4166.714)" fill="#fff"/>
@@ -75,7 +75,6 @@ const Navbar = (props:any) => {
             <path id="Icon.BG-5" data-name="Icon.BG" d="M15,0A15,15,0,1,1,0,15,15,15,0,0,1,15,0Z" transform="translate(-507 -4177)" fill="#5d41ac"/>
             <path id="Caminho_3736" data-name="Caminho 3736" d="M0,0H6.5V6.5" transform="translate(-487.001 -4163.091) rotate(135)" fill="none" stroke="#fff" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"/>
           </g>
-        </g>
       </svg>
     </Header>
   )
