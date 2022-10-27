@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import ItemLadoDireito from './components/ItemLadoDireito'
 import Navbar from './components/Navbar'
 import styled from "styled-components";
@@ -8,14 +7,25 @@ import ItemsPortfolio from './components/ItemsPortfolio';
 
 const Wrapper = styled.main`
   width: 100%;
-  div {
-    display: flex;
-  }
   main {
     display: flex;
   }
   #title {
     margin: 2rem 0 1rem 2rem;
+  }
+  #firstChart {
+    margin: 2rem 0 2rem 2rem;
+    background-color: #fff;
+    border-radius: 0.5rem;
+    box-shadow: 0px 0px 5px #ccc;
+    width: 100%;
+    height: 400px;
+  }
+  h2 {
+    margin: 2rem;
+    color: #4c309b;
+    font-size: 20px;
+    font-weight: 700;
   }
 `;
 
@@ -30,9 +40,9 @@ function App() {
   if(error){
     return <p>Houve um problema...</p>
   }
+
   const { data }:any = Data;
-  const { snapshotByPortfolio }:any = data;
-  console.log( data )
+  const { snapshotByPortfolio, snapshotByProduct }:any = data;
 
   return (
     <Wrapper>
@@ -40,11 +50,9 @@ function App() {
       <main>
         <ItemLadoDireito/>
         <section>
-          <svg id='title' xmlns="http://www.w3.org/2000/svg" width="116" height="24" viewBox="0 0 116 24">
-            <text id="Poupança_Itaú" data-name="Poupança Itaú" transform="translate(0 19)" fill="#4c309b" fontSize="20" fontFamily="Montserrat-Bold, Montserrat" fontWeight="700"><tspan x="0" y="0">Renda Fixa</tspan></text>
-          </svg>
+          <h2>Renda Fixa</h2>
           <ItemsFront data={snapshotByPortfolio}/>
-          <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" width="1108" height="366" viewBox="0 0 1108 366">
+          <svg id='firstChart' xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
             <g id="Grupo_4343" data-name="Grupo 4343" transform="translate(9 7)">
               <g transform="matrix(1, 0, 0, 1, -9, -7)" filter="url(#Chart.BG)">
                 <rect id="Chart.BG-2" data-name="Chart.BG" width="1090" height="348" rx="10" transform="translate(9 7)" fill="#fff"/>
@@ -151,7 +159,7 @@ function App() {
               <text id="Poupança_Itaú" data-name="Poupança Itaú" transform="translate(19 36)" fill="#627179" fontSize="18" fontFamily="Montserrat-Medium, Montserrat" fontWeight="500"><tspan x="0" y="0">Rentabilidade dos Títulos</tspan></text>
             </g>
           </svg>
-          <ItemsPortfolio />
+          <ItemsPortfolio data={snapshotByProduct}/>
         </section>
       </main>
     </Wrapper>

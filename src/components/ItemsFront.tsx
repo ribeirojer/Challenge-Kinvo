@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 const Wrapper = styled.div`
-  width: 100%;
   display: flex;
   gap: 1rem;
   margin-left: 2rem;
@@ -40,25 +39,30 @@ const Wrapper = styled.div`
 
 type Props = {}
 
+function convertNumberToCurrency (number: number): string {
+  const currency = number.toLocaleString('pt-br', { minimumFractionDigits: 2}); 
+  return currency;
+}
+
 const ItemsFront = (props: any) => {
   return (
     <Wrapper>
         <div className="item">
             <div className="border">
                 <p id="t1">SALDO BRUTO</p>
-                <p id="t2">R$ {props.data.equity } </p>        
+                <p id="t2">R$ { convertNumberToCurrency(props.data.equity) }</p>
             </div>
         </div>
         <div className="item">
             <div className="border">
                 <p id="t1">VALOR APLICADO</p>
-                <p id="t2">R$ { props.data.valueApplied }</p>        
+                <p id="t2">R$ { convertNumberToCurrency(props.data.valueApplied) }</p>        
             </div>
         </div>
         <div className="item">
             <div className="border">
                 <p id="t1">RESULTADO</p>
-                <p id="t2">R$ { props.data.equityProfit }</p>        
+                <p id="t2">R$ { convertNumberToCurrency(props.data.equityProfit) }</p>        
             </div>
         </div>
         <div className="item">
