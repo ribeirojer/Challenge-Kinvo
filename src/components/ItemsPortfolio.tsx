@@ -1,26 +1,29 @@
+import TitleItem from "./TitleItem"
 import styled from "styled-components";
 
 const Wrapper = styled.main`
-
   display: flex;
   flex-direction: column;
   margin: 2rem;
   background-color: #fff;
   .item {
     display: flex;
-    margin: 0 0 1rem 2rem;
+    margin: 0 0 1rem 1.5rem;
   }
-  .tit {
+  .wrapper {
     padding: 0.5rem;
+    margin-right: 0.5rem;
     border: 1px solid #ccc;
-    border-radius: 0.7rem;
+    border-radius: 0.5rem;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
   }
-  .primeiro {
+  .fixedIncome {
+    width: 350px;
     margin-top: 0.5rem;
     display: flex;
+    justify-content: space-between;
     align-items: flex-end;
   }
   .fixedIncome__name {
@@ -29,7 +32,7 @@ const Wrapper = styled.main`
     width: 180px;
     //font-family: 'SegoeUI';
   }
-  .primeiro .bondType {
+  .fixedIncome__bondType {
     color: #8a51ba;
     font-size: 14px;
     //font-family: 'SegoeUI';
@@ -50,6 +53,9 @@ const Wrapper = styled.main`
   }
   .segundo div {
     margin-right: 1rem;
+  }
+  .segundo div:last-child {
+    margin-right: none;
   }
   .terceiro {
     display: flex;
@@ -147,24 +153,18 @@ const ItemsPortfolio = (props: any) => {
       { props.data.map((item:any)=>{
         return (
           <div className="item">
-            <div className="tit">
-              <div>
-                <span>TÍTULO</span>
-                <i>i</i>
-              </div>
-              <div className="primeiro">
+            <div className="wrapper">
+              <TitleItem title={'TÍTULO'}/>
+              <div className="fixedIncome">
                 <p className="fixedIncome__name">{ item.fixedIncome.name }</p>
                 <div>
                   <span>CLASSE</span>
-                  <p className="bondType">{ item.fixedIncome.bondType }</p>
+                  <p className="fixedIncome__bondType">{ item.fixedIncome.bondType }</p>
                 </div>
               </div>
             </div>
-            <div className="minpos">
-              <div>
-                <span>MINHA POSIÇÃO</span>
-                <i>i</i>
-              </div>
+            <div className="wrapper">
+              <TitleItem title={'MINHA POSIÇÃO'}/>
               <div className="segundo">
                 <div>
                   <span>VALOR INVES.</span>
@@ -192,11 +192,8 @@ const ItemsPortfolio = (props: any) => {
                 </div>
               </div>
             </div>
-            <div className="due">
-              <div>
-                <span>VENCIMENTO</span>
-                <i className="bi bi-info-circle"></i>
-              </div>
+            <div className="wrapper">
+              <TitleItem title={'VENCIMENTO'}/>
               <div className="terceiro">
                 <div>
                   <span>DATA VENC.</span>
