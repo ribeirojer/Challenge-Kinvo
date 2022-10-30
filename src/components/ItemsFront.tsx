@@ -1,9 +1,11 @@
 import styled from "styled-components";
+import { convertNumberToCurrency } from "../utils"
 
 const Wrapper = styled.div`
   display: flex;
-  gap: 1rem;
-  margin-left: 2rem;
+  justify-content: space-between;
+  margin-left: 1.5rem;
+  padding-right: 1.5rem;
   .item {
     display: flex;
     flex-direction: column;
@@ -38,11 +40,6 @@ const Wrapper = styled.div`
 `;
 
 type Props = {}
-
-function convertNumberToCurrency (number: number): string {
-  const currency = number.toLocaleString('pt-br', { minimumFractionDigits: 2}); 
-  return currency;
-}
 
 const ItemsFront = (props: any) => {
   return (

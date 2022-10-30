@@ -1,14 +1,21 @@
 import TitleItem from "./TitleItem"
 import styled from "styled-components";
+import { convertNumberToCurrency, editDate } from "../utils";
 
 const Wrapper = styled.main`
   display: flex;
   flex-direction: column;
-  margin: 2rem;
+  margin: 1rem 1.5rem 0 1.5rem;
   background-color: #fff;
+  border-radius: 0.5rem;
+  box-shadow: 0px 0px 5px #ccc;
   .item {
     display: flex;
-    margin: 0 0 1rem 1.5rem;
+    padding: 1rem 1rem 1rem 1.5rem;
+    border-bottom: 1px solid #ccc;
+  }
+  .item:nth-child(odd) {
+    background-color: #f5f5f5;
   }
   .wrapper {
     padding: 0.5rem;
@@ -20,7 +27,7 @@ const Wrapper = styled.main`
     justify-content: space-between;
   }
   .fixedIncome {
-    width: 350px;
+    width: 18.5rem;
     margin-top: 0.5rem;
     display: flex;
     justify-content: space-between;
@@ -54,11 +61,24 @@ const Wrapper = styled.main`
   .segundo div {
     margin-right: 1rem;
   }
-  .segundo div:last-child {
-    margin-right: none;
+  .segundo div:nth-child(1),
+  .segundo div:nth-child(2),
+  .segundo div:nth-child(3) {
+    min-width: 75px;
+  }
+  .segundo div:nth-child(5) {
+    min-width: 40px;
+  }
+  .segundo div:nth-child(6) {
+    min-width: 65px;
+    margin-right: unset;
   }
   .terceiro {
     display: flex;
+  }
+  .terceiro div:nth-child(1) {
+    min-width: 90px;
+    margin-right: 1rem;
   }
   .terceiro span {
     letter-spacing: 0.05em;
@@ -68,6 +88,25 @@ const Wrapper = styled.main`
     font-size: 16px;
     //font-family: 'SegoeUI';
   }
+  .subtitle {
+    margin: 1.5rem 0 0 1.5rem;
+    padding-right: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  .subtitle svg:first-child {
+    margin-right: 1rem;
+  }
+  .second__title {
+    color: #627179;
+    font-size: 18px;
+    font-weight: 500;
+  }
+  .botons {
+    display: flex;
+    justify-content: center;
+  }
 `;
 
 type Props = {}
@@ -76,80 +115,31 @@ const ItemsPortfolio = (props: any) => {
   console.log(props.data);
 
   return (
-    <Wrapper>            
-      <svg key={''} xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" width="1090">
-        <g id="Repetição_de_grade_147" data-name="Repetição de grade 147" clipPath="url(#clipPath)">
-          <g id="Grupo_12119" data-name="Grupo 12119" transform="translate(-248.5 -688)">
-            <line id="Linha_273" data-name="Linha 273" x2="1090" transform="translate(248.5 785)" fill="none" stroke="#eef2f4" strokeWidth="1"/>
-            <g id="Grupo_12118" data-name="Grupo 12118" transform="translate(0 -120)">
-              <text id="Poupança_Itaú" data-name="Poupança Itaú" transform="translate(277.001 858)" fill="#4e5b61" fontSize="12" fontFamily="SegoeUI, Segoe UI"><tspan x="0" y="0">Tesouro IPCA+ com Juros</tspan><tspan x="0" y="16">Semestrais 2024 (NTNB)</tspan></text>
-              <text id="Poupança_Itaú-2" data-name="Poupança Itaú" transform="translate(526.065 872)" fill="#8a51ba" fontSize="14" fontFamily="SegoeUI, Segoe UI"><tspan x="0" y="0">Tesouro Direto</tspan></text>
-              <text id="Poupança_Itaú-3" data-name="Poupança Itaú" transform="translate(526.001 853)" fill="#4e5b61" fontSize="9" fontFamily="SegoeUI, Segoe UI" letterSpacing="0.05em"><tspan x="0" y="0">CLASSE</tspan></text>
-              <g id="União_243" data-name="União 243" transform="translate(8177 -837)" fill="none">
-                <path d="M-7899,1645h352a10,10,0,0,1,10,10v57a10,10,0,0,1-10,10h-352a10,10,0,0,1-10-10v-57A10,10,0,0,1-7899,1645Z" stroke="none"/>
-                <path d="M -7899 1646 C -7903.96240234375 1646 -7908 1650.037353515625 -7908 1655 L -7908 1712 C -7908 1716.962646484375 -7903.96240234375 1721 -7899 1721 L -7547 1721 C -7542.03759765625 1721 -7538 1716.962646484375 -7538 1712 L -7538 1655 C -7538 1650.037353515625 -7542.03759765625 1646 -7547 1646 L -7899 1646 M -7899 1645 L -7547 1645 C -7541.47705078125 1645 -7537 1649.477172851562 -7537 1655 L -7537 1712 C -7537 1717.522827148438 -7541.47705078125 1722 -7547 1722 L -7899 1722 C -7904.52294921875 1722 -7909 1717.522827148438 -7909 1712 L -7909 1655 C -7909 1649.477172851562 -7904.52294921875 1645 -7899 1645 Z" stroke="none" fill="#dae0e3"/>
+    <Wrapper>
+      <div className='subtitle'>
+        <h2 className='second__title'>Minhas Rendas Fixas</h2>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="155" height="32" viewBox="0 0 155 32">
+            <g id="Selectbox.Filter" transform="translate(-7)">
+              <g id="Selectbox.BG" transform="translate(7)" fill="#fff" stroke="#d6d9dd" stroke-width="1">
+                <rect width="155" height="32" rx="10" stroke="none"/>
+                <rect x="0.5" y="0.5" width="154" height="31" rx="9.5" fill="none"/>
               </g>
-              <rect id="borda-area-defesa" width="14" height="14" transform="translate(336.535 815.508)" fill="none"/>
-              <path id="Caminho_3844" data-name="Caminho 3844" d="M772.757,55.128a.47.47,0,0,0-.47.47V59.02a.47.47,0,1,0,.939,0V55.6A.47.47,0,0,0,772.757,55.128Zm0-2.519a.469.469,0,0,0-.47.47v.642a.47.47,0,1,0,.939,0v-.642A.469.469,0,0,0,772.757,52.609Zm4.645-1.256A6.645,6.645,0,1,0,772.7,62.7h0a6.646,6.646,0,0,0,4.7-11.343Zm-4.7,10.4h0a5.707,5.707,0,1,1,5.705-5.708A5.713,5.713,0,0,1,772.7,61.756Z" transform="translate(-442.811 766.45)" fill="#4e5b61"/>
-              <text id="Poupança_Itaú-4" data-name="Poupança Itaú" transform="translate(277.447 826)" fill="#4e5b61" fontSize="9" fontFamily="SegoeUI, Segoe UI" letterSpacing="0.05em"><tspan x="0" y="0">TÍTULO</tspan></text>
+              <text id="Ordenar_por" data-name="Ordenar por" transform="translate(17 21)" fill="#707b81" font-size="12" font-family="Montserrat-Medium, Montserrat" font-weight="500"><tspan x="0" y="0">Ordenar por</tspan></text>
+              <path id="Caminho_26" data-name="Caminho 26" d="M8.1,11.6,2.6,6.041,4.026,4.6,8.1,8.718,12.174,4.6,13.6,6.041Z" transform="translate(136.4 8.4)" fill="#707b81"/>
             </g>
-            <g id="Grupo_12093" data-name="Grupo 12093" transform="translate(318 34)">
-              <g id="Grupo_12050" data-name="Grupo 12050" transform="translate(810.999 691)">
-                <text id="Poupança_Itaú-5" data-name="Poupança Itaú" transform="translate(0 26.615)" fill="#008dcb" fontSize="16" fontFamily="SegoeUI, Segoe UI"><tspan x="0" y="0">15.05.2024</tspan></text>
-                <text id="Poupança_Itaú-6" data-name="Poupança Itaú" transform="translate(0.138 9)" fill="#4e5b61" fontSize="9" fontFamily="SegoeUI, Segoe UI" letterSpacing="0.05em"><tspan x="0" y="0">DATA VENC.</tspan></text>
+          </svg>
+          <svg xmlns="http://www.w3.org/2000/svg" width="240" height="32" viewBox="0 0 240 32">
+            <g id="Selectbox.Filter" transform="translate(-0.096)">
+              <g id="Selectbox.BG" transform="translate(0.096)" fill="#fff" stroke="#d6d9dd" stroke-width="1">
+                <rect width="240" height="32" rx="10" stroke="none"/>
+                <rect x="0.5" y="0.5" width="239" height="31" rx="9.5" fill="none"/>
               </g>
-              <g id="Grupo_12051" data-name="Grupo 12051" transform="translate(910.089 691)">
-                <text id="Poupança_Itaú-7" data-name="Poupança Itaú" transform="translate(0 26.615)" fill="#008dcb" fontSize="16" fontFamily="SegoeUI, Segoe UI"><tspan x="0" y="0">5762</tspan></text>
-                <text id="Poupança_Itaú-8" data-name="Poupança Itaú" transform="translate(-0.09 9)" fill="#4e5b61" fontSize="9" fontFamily="SegoeUI, Segoe UI" letterSpacing="0.05em"><tspan x="0" y="0">DIAS ATÉ VENC.</tspan></text>
-              </g>
-              <text id="Poupança_Itaú-9" data-name="Poupança Itaú" transform="translate(810.999 673)" fill="#4e5b61" fontSize="9" fontFamily="SegoeUI, Segoe UI" letterSpacing="0.05em"><tspan x="0" y="0">VENCIMENTO</tspan></text>
-              <g id="União_241" data-name="União 241" transform="translate(8727.999 -3506)" fill="none">
-                <path d="M-7917,4160h178a10,10,0,0,1,10,10v57a10,10,0,0,1-10,10h-178a10,10,0,0,1-10-10v-57A10,10,0,0,1-7917,4160Z" stroke="none"/>
-                <path d="M -7917 4161 C -7921.96240234375 4161 -7926 4165.03759765625 -7926 4170 L -7926 4227 C -7926 4231.96240234375 -7921.96240234375 4236 -7917 4236 L -7739 4236 C -7734.03759765625 4236 -7730 4231.96240234375 -7730 4227 L -7730 4170 C -7730 4165.03759765625 -7734.03759765625 4161 -7739 4161 L -7917 4161 M -7917 4160 L -7739 4160 C -7733.47705078125 4160 -7729 4164.47705078125 -7729 4170 L -7729 4227 C -7729 4232.52294921875 -7733.47705078125 4237 -7739 4237 L -7917 4237 C -7922.52294921875 4237 -7927 4232.52294921875 -7927 4227 L -7927 4170 C -7927 4164.47705078125 -7922.52294921875 4160 -7917 4160 Z" stroke="none" fill="#dae0e3"/>
-              </g>
-              <g id="Grupo_12089" data-name="Grupo 12089" transform="translate(123.757 613.952)">
-                <rect id="borda-area-defesa-2" data-name="borda-area-defesa" width="14" height="14" transform="translate(765.242 48.548)" fill="none"/>
-                <path id="Caminho_3844-2" data-name="Caminho 3844" d="M772.757,55.128a.47.47,0,0,0-.47.47V59.02a.47.47,0,1,0,.939,0V55.6A.47.47,0,0,0,772.757,55.128Zm0-2.519a.469.469,0,0,0-.47.47v.642a.47.47,0,1,0,.939,0v-.642A.469.469,0,0,0,772.757,52.609Zm4.645-1.256A6.645,6.645,0,1,0,772.7,62.7h0a6.646,6.646,0,0,0,4.7-11.343Zm-4.7,10.4h0a5.707,5.707,0,1,1,5.705-5.708A5.713,5.713,0,0,1,772.7,61.756Z" transform="translate(-0.475 -0.5)" fill="#4e5b61"/>
-              </g>
+              <path id="Caminho_3845" data-name="Caminho 3845" d="M323.731,11.78a5.049,5.049,0,1,0-5.049-5.049A5.063,5.063,0,0,0,323.731,11.78Zm5.3-.926,2.861,2.861a.833.833,0,0,1-1.178,1.178l-2.861-2.861a6.631,6.631,0,0,1-4.123,1.43,6.731,6.731,0,1,1,6.731-6.731A6.459,6.459,0,0,1,329.032,10.854Z" transform="translate(-308.685 8.5)" fill="#9da5ac" stroke="#9da5ac" stroke-width="1"/>
             </g>
-            <g id="Grupo_12094" data-name="Grupo 12094" transform="translate(-435 34)">
-              <g id="Grupo_12053" data-name="Grupo 12053" transform="translate(1095 691)">
-                <text id="Poupança_Itaú-10" data-name="Poupança Itaú" transform="translate(0 26.615)" fill="#38bfa0" fontSize="16" fontFamily="SegoeUI, Segoe UI"><tspan x="0" y="0">1.003,00</tspan></text>
-                <text id="Poupança_Itaú-11" data-name="Poupança Itaú" transform="translate(0.434 9)" fill="#4e5b61" fontSize="9" fontFamily="SegoeUI, Segoe UI" letterSpacing="0.05em"><tspan x="0" y="0">VALOR INVES.</tspan></text>
-              </g>
-              <g id="Grupo_12054" data-name="Grupo 12054" transform="translate(1182 691)">
-                <text id="Poupança_Itaú-12" data-name="Poupança Itaú" transform="translate(0 26.615)" fill="#38bfa0" fontSize="16" fontFamily="SegoeUI, Segoe UI"><tspan x="0" y="0">1.124,00</tspan></text>
-                <text id="Poupança_Itaú-13" data-name="Poupança Itaú" transform="translate(0 9)" fill="#4e5b61" fontSize="9" fontFamily="SegoeUI, Segoe UI" letterSpacing="0.05em"><tspan x="0" y="0">SALDO BRUTO</tspan></text>
-              </g>
-              <g id="Grupo_12099" data-name="Grupo 12099" transform="translate(1350 691)">
-                <text id="Poupança_Itaú-14" data-name="Poupança Itaú" transform="translate(0 26.615)" fill="#38bfa0" fontSize="16" fontFamily="SegoeUI, Segoe UI"><tspan x="0" y="0">5,33%</tspan></text>
-                <text id="Poupança_Itaú-15" data-name="Poupança Itaú" transform="translate(0 9)" fill="#4e5b61" fontSize="9" fontFamily="SegoeUI, Segoe UI" letterSpacing="0.05em"><tspan x="0" y="0">% DA CART.</tspan></text>
-              </g>
-              <g id="Grupo_12097" data-name="Grupo 12097" transform="translate(1272 691)">
-                <text id="Poupança_Itaú-16" data-name="Poupança Itaú" transform="translate(0 26.615)" fill="#38bfa0" fontSize="16" fontFamily="SegoeUI, Segoe UI"><tspan x="0" y="0">48,55%</tspan></text>
-                <text id="Poupança_Itaú-17" data-name="Poupança Itaú" transform="translate(0 9)" fill="#4e5b61" fontSize="9" fontFamily="SegoeUI, Segoe UI" letterSpacing="0.05em"><tspan x="0" y="0">RENT.</tspan></text>
-              </g>
-              <g id="Grupo_12116" data-name="Grupo 12116" transform="translate(1427 691)">
-                <text id="Poupança_Itaú-18" data-name="Poupança Itaú" transform="translate(0 26.615)" fill="#38bfa0" fontSize="16" fontFamily="SegoeUI, Segoe UI"><tspan x="0" y="0">1,24</tspan></text>
-                <text id="Poupança_Itaú-19" data-name="Poupança Itaú" transform="translate(0 9)" fill="#4e5b61" fontSize="9" fontFamily="SegoeUI, Segoe UI" letterSpacing="0.05em"><tspan x="0" y="0">CDI</tspan></text>
-              </g>
-              <g id="Grupo_12117" data-name="Grupo 12117" transform="translate(1480 691)">
-                <text id="Poupança_Itaú-20" data-name="Poupança Itaú" transform="translate(0 26.615)" fill="#38bfa0" fontSize="16" fontFamily="SegoeUI, Segoe UI"><tspan x="0" y="0">118</tspan></text>
-                <text id="Poupança_Itaú-21" data-name="Poupança Itaú" transform="translate(0 9)" fill="#4e5b61" fontSize="9" fontFamily="SegoeUI, Segoe UI" letterSpacing="0.05em"><tspan x="0" y="0">SOBRE CDI</tspan></text>
-              </g>
-              <g id="União_242" data-name="União 242" transform="translate(9012 -3506)" fill="none">
-                <path d="M-7917,4160h439a10,10,0,0,1,10,10v57a10,10,0,0,1-10,10h-439a10,10,0,0,1-10-10v-57A10,10,0,0,1-7917,4160Z" stroke="none"/>
-                <path d="M -7917 4161 C -7921.96240234375 4161 -7926 4165.03759765625 -7926 4170 L -7926 4227 C -7926 4231.96240234375 -7921.96240234375 4236 -7917 4236 L -7478 4236 C -7473.03759765625 4236 -7469 4231.96240234375 -7469 4227 L -7469 4170 C -7469 4165.03759765625 -7473.03759765625 4161 -7478 4161 L -7917 4161 M -7917 4160 L -7478 4160 C -7472.47705078125 4160 -7468 4164.47705078125 -7468 4170 L -7468 4227 C -7468 4232.52294921875 -7472.47705078125 4237 -7478 4237 L -7917 4237 C -7922.52294921875 4237 -7927 4232.52294921875 -7927 4227 L -7927 4170 C -7927 4164.47705078125 -7922.52294921875 4160 -7917 4160 Z" stroke="none" fill="#dae0e3"/>
-              </g>
-              <text id="Poupança_Itaú-22" data-name="Poupança Itaú" transform="translate(1095 673)" fill="#4e5b61" fontSize="9" fontFamily="SegoeUI, Segoe UI" letterSpacing="0.05em"><tspan x="0" y="0">MINHA POSIÇÃO</tspan></text>
-              <g id="Grupo_12090" data-name="Grupo 12090" transform="translate(423.293 613.952)">
-                <rect id="borda-area-defesa-3" data-name="borda-area-defesa" width="14" height="14" transform="translate(765.242 48.548)" fill="none"/>
-                <path id="Caminho_3844-3" data-name="Caminho 3844" d="M772.757,55.128a.47.47,0,0,0-.47.47V59.02a.47.47,0,1,0,.939,0V55.6A.47.47,0,0,0,772.757,55.128Zm0-2.519a.469.469,0,0,0-.47.47v.642a.47.47,0,1,0,.939,0v-.642A.469.469,0,0,0,772.757,52.609Zm4.645-1.256A6.645,6.645,0,1,0,772.7,62.7h0a6.646,6.646,0,0,0,4.7-11.343Zm-4.7,10.4h0a5.707,5.707,0,1,1,5.705-5.708A5.713,5.713,0,0,1,772.7,61.756Z" transform="translate(-0.475 -0.5)" fill="#4e5b61"/>
-              </g>
-            </g>
-          </g>
-        </g>
-      </svg>
+          </svg>
+        </div>
+      </div>
       { props.data.map((item:any)=>{
         return (
           <div className="item">
@@ -168,27 +158,27 @@ const ItemsPortfolio = (props: any) => {
               <div className="segundo">
                 <div>
                   <span>VALOR INVES.</span>
-                  <p className="position">{ item.position.valueApplied }</p>
+                  <p className="position">{ convertNumberToCurrency(item.position.valueApplied) }</p>
                 </div>
                 <div>
                   <span>SALDO BRUTO</span>
-                  <p className="position">{ item.position.equity }</p>
+                  <p className="position">{ convertNumberToCurrency(item.position.equity) }</p>
                 </div>
                 <div>
                   <span>RENT.</span>
-                  <p className="position">{ item.position.profitability }</p>
+                  <p className="position">{ convertNumberToCurrency(item.position.profitability) }%</p>
                 </div>
                 <div>
                   <span>% DA CART.</span>
-                  <p className="position">{ item.position.portfolioPercentage }</p>
+                  <p className="position">{ convertNumberToCurrency(item.position.portfolioPercentage) }%</p>
                 </div>
                 <div>
                   <span>CDI</span>
-                  <p className="position">{ item.position.indexerValue }</p>
+                  <p className="position">{ convertNumberToCurrency(item.position.indexerValue) }</p>
                 </div>
                 <div>
                   <span>SOBRE CDI</span>
-                  <p className="position">{ item.position.percentageOverIndexer }</p>
+                  <p className="position">{ convertNumberToCurrency(item.position.percentageOverIndexer) }</p>
                 </div>
               </div>
             </div>
@@ -197,7 +187,7 @@ const ItemsPortfolio = (props: any) => {
               <div className="terceiro">
                 <div>
                   <span>DATA VENC.</span>
-                  <p>{ item.due.date }</p>
+                  <p>{ editDate(item.due.date) }</p>
                 </div>
                 <div>
                   <span>DIAS ATÉ VENC.</span>
@@ -208,6 +198,49 @@ const ItemsPortfolio = (props: any) => {
           </div>
         )
       })}
+      <div className="botons">
+        <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" width="200" height="65" viewBox="0 0 200 65">
+          <g id="Bt-Numero-Paginas-Medio" transform="translate(15 15)">
+            <g id="Grupo_11075" data-name="Grupo 11075" transform="translate(-803 -765)">
+              <g transform="matrix(1, 0, 0, 1, 788, 750)" filter="url(#Caminho_295)">
+                <path id="Caminho_295-3" data-name="Caminho 295" d="M4,0H31a4,4,0,0,1,4,4V31a4,4,0,0,1-4,4H4a4,4,0,0,1-4-4V4A4,4,0,0,1,4,0Z" transform="translate(59 15)" fill="#dce0e3"/>
+              </g>
+              <text id="_1" data-name="1" transform="translate(865 787)" fill="#fff" font-size="13" font-family="Montserrat-Bold, Montserrat" font-weight="700"><tspan x="-2.548" y="0">1</tspan></text>
+            </g>
+            <g id="Grupo_11074" data-name="Grupo 11074" transform="translate(-807 -765)">
+              <g transform="matrix(1, 0, 0, 1, 792, 750)" filter="url(#Caminho_295-2)">
+                <g id="Caminho_295-4" data-name="Caminho 295" transform="translate(103 15)" fill="#fff">
+                  <path d="M 31 34.5 L 4 34.5 C 2.070090055465698 34.5 0.5 32.92990875244141 0.5 31 L 0.5 4 C 0.5 2.070090055465698 2.070090055465698 0.5 4 0.5 L 31 0.5 C 32.92990875244141 0.5 34.5 2.070090055465698 34.5 4 L 34.5 31 C 34.5 32.92990875244141 32.92990875244141 34.5 31 34.5 Z" stroke="none"/>
+                  <path d="M 4 1 C 2.345790863037109 1 1 2.345790863037109 1 4 L 1 31 C 1 32.65420913696289 2.345790863037109 34 4 34 L 31 34 C 32.65420913696289 34 34 32.65420913696289 34 31 L 34 4 C 34 2.345790863037109 32.65420913696289 1 31 1 L 4 1 M 4 0 L 31 0 C 33.20914077758789 0 35 1.790859222412109 35 4 L 35 31 C 35 33.20914077758789 33.20914077758789 35 31 35 L 4 35 C 1.790859222412109 35 0 33.20914077758789 0 31 L 0 4 C 0 1.790859222412109 1.790859222412109 0 4 0 Z" stroke="none" fill="#edeef0"/>
+                </g>
+              </g>
+              <text id="_2" data-name="2" transform="translate(913 787)" fill="#c2c5cc" font-size="13" font-family="Montserrat-Regular, Montserrat"><tspan x="-3.692" y="0">2</tspan></text>
+            </g>
+            <g id="Grupo_11072" data-name="Grupo 11072" transform="translate(-857 -765)">
+              <g transform="matrix(1, 0, 0, 1, 842, 750)" filter="url(#Retângulo_156)">
+                <g id="Retângulo_156-3" data-name="Retângulo 156" transform="translate(150 15)" fill="#fff" stroke="#edeef0" stroke-width="1">
+                  <rect width="35" height="35" rx="4" stroke="none"/>
+                  <rect x="0.5" y="0.5" width="34" height="34" rx="3.5" fill="none"/>
+                </g>
+              </g>
+              <g id="Grupo_10933" data-name="Grupo 10933" transform="translate(995.301 1305.646) rotate(-90)">
+                <path id="Caminho_3521" data-name="Caminho 3521" d="M522.788,18.465a1.028,1.028,0,0,1-.728-.3l-4.472-4.471a1.03,1.03,0,1,1,1.457-1.457l3.743,3.743,3.742-3.743a1.03,1.03,0,1,1,1.457,1.457l-4.47,4.471A1.03,1.03,0,0,1,522.788,18.465Z" transform="translate(0 0)" fill="#c2c5cc"/>
+              </g>
+            </g>
+            <g id="Grupo_11076" data-name="Grupo 11076" transform="translate(-799 -765)">
+              <g transform="matrix(1, 0, 0, 1, 784, 750)" filter="url(#Retângulo_156-2)">
+                <g id="Retângulo_156-4" data-name="Retângulo 156" transform="translate(15 15)" fill="#fff" stroke="#edeef0" stroke-width="1">
+                  <rect width="35" height="35" rx="4" stroke="none"/>
+                  <rect x="0.5" y="0.5" width="34" height="34" rx="3.5" fill="none"/>
+                </g>
+              </g>
+              <g id="Grupo_11071" data-name="Grupo 11071" transform="translate(830.699 260.072) rotate(90)">
+                <path id="Caminho_3521-2" data-name="Caminho 3521" d="M522.788,18.465a1.028,1.028,0,0,1-.728-.3l-4.472-4.471a1.03,1.03,0,1,1,1.457-1.457l3.743,3.743,3.742-3.743a1.03,1.03,0,1,1,1.457,1.457l-4.47,4.471A1.03,1.03,0,0,1,522.788,18.465Z" transform="translate(0 0)" fill="#c2c5cc"/>
+              </g>
+            </g>
+          </g>
+        </svg>
+      </div>
     </Wrapper>
   )
 }

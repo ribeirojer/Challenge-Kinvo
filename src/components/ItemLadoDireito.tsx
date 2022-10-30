@@ -3,6 +3,7 @@ import styled from "styled-components";
 const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
+    background-color: #fff;
   svg {
     width: 227px;
     display: block;

@@ -10,22 +10,30 @@ const Wrapper = styled.main`
   main {
     display: flex;
   }
-  #title {
-    margin: 2rem 0 1rem 2rem;
-  }
-  #firstChart {
-    margin: 2rem 0 2rem 2rem;
+  .chart1 {
+    margin: 2rem 0 1rem 1.5rem;
     background-color: #fff;
     border-radius: 0.5rem;
     box-shadow: 0px 0px 5px #ccc;
-    width: 100%;
-    height: 400px;
+    width: 96%;
+    height: 350px;
   }
-  h2 {
-    margin: 2rem;
+  .first__title {
+    margin: 2rem 0 1.5rem 1.5rem;
     color: #4c309b;
     font-size: 20px;
     font-weight: 700;
+  }
+  .chart2 {
+    display: flex;
+    margin: 2rem 1.5rem;
+    background-color: #fff;
+    border-radius: 0.5rem;
+    box-shadow: 0px 0px 5px #ccc;
+  }
+  .chart2 svg {
+    width: 50%;
+    height: 500px;
   }
 `;
 
@@ -50,9 +58,9 @@ function App() {
       <main>
         <ItemLadoDireito/>
         <section>
-          <h2>Renda Fixa</h2>
+          <h2 className='first__title'>Renda Fixa</h2>
           <ItemsFront data={snapshotByPortfolio}/>
-          <svg id='firstChart' xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
+          <svg className='chart1' xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
             <g id="Grupo_4343" data-name="Grupo 4343" transform="translate(9 7)">
               <g transform="matrix(1, 0, 0, 1, -9, -7)" filter="url(#Chart.BG)">
                 <rect id="Chart.BG-2" data-name="Chart.BG" width="1090" height="348" rx="10" transform="translate(9 7)" fill="#fff"/>
@@ -160,6 +168,92 @@ function App() {
             </g>
           </svg>
           <ItemsPortfolio data={snapshotByProduct}/>
+          <div className='chart2'>
+            <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" width="596.478" height="508.236" viewBox="0 0 596.478 508.236">
+              <g id="Grupo_12120" data-name="Grupo 12120" transform="translate(-219 -1308)">
+                <g transform="matrix(1, 0, 0, 1, 219, 1308)" filter="url(#Statistics.BG)">
+                  <rect id="Statistics.BG-2" data-name="Statistics.BG" width="536.478" height="448.236" rx="10" transform="translate(30 28)" fill="#fff"/>
+                </g>
+                <g id="Grupo_11084" data-name="Grupo 11084" transform="translate(328 1230.334)">
+                  <path id="Caminho_3473" data-name="Caminho 3473" d="M596.926,97.506l-27,47.974a79.442,79.442,0,0,1-28.224,147.954l7.442,54.552c66.333-9.05,116.318-66.318,116.318-133.265A134.65,134.65,0,0,0,596.926,97.506Z" transform="translate(-356.468 95.778)" fill="#9e51ba"/>
+                  <path id="Caminho_3474" data-name="Caminho 3474" d="M571.641,150.783l26.947-48A134.489,134.489,0,0,0,541.325,85.84l-3.51,54.945A78.964,78.964,0,0,1,571.641,150.783Z" transform="translate(-358.251 90.434)" fill="#0dd1e3"/>
+                  <path id="Caminho_3475" data-name="Caminho 3475" d="M576.6,299.608a79.457,79.457,0,0,1,0-158.914c1.7,0,3.387.073,5.064.178l3.51-54.945q-4.282-.273-8.574-.274c-73.785,0-134.5,60.715-134.5,134.5s60.715,134.5,134.5,134.5a134.588,134.588,0,0,0,18.19-1.235l-7.446-54.55A80.09,80.09,0,0,1,576.6,299.608Z" transform="translate(-402.098 90.348)" fill="#ff8052"/>
+                </g>
+                <g id="Product" transform="translate(308 1723.334)" clip-path="url(#clip-path)">
+                  <g id="Product-2" data-name="Product" transform="translate(0 1.484)">
+                    <rect id="Label" width="8" height="8" rx="4" transform="translate(0 2.618)" fill="#dae0e3"/>
+                    <text id="Poupança_Itaú" data-name="Poupança Itaú" transform="translate(12.066 10.516)" fill="#627179" font-size="12" font-family="Montserrat-Medium, Montserrat" font-weight="500"><tspan x="0" y="0">Tipo</tspan></text>
+                  </g>
+                  <g id="Product-3" data-name="Product" transform="translate(136 1.484)">
+                    <rect id="Label-2" data-name="Label" width="8" height="8" rx="4" transform="translate(0 2.618)" fill="#dae0e3"/>
+                    <text id="Poupança_Itaú-2" data-name="Poupança Itaú" transform="translate(12.066 10.516)" fill="#627179" font-size="12" font-family="Montserrat-Medium, Montserrat" font-weight="500"><tspan x="0" y="0">Tipo</tspan></text>
+                  </g>
+                  <g id="Product-4" data-name="Product" transform="translate(272 1.484)">
+                    <rect id="Label-3" data-name="Label" width="8" height="8" rx="4" transform="translate(0 2.618)" fill="#dae0e3"/>
+                    <text id="Poupança_Itaú-3" data-name="Poupança Itaú" transform="translate(12.066 10.516)" fill="#627179" font-size="12" font-family="Montserrat-Medium, Montserrat" font-weight="500"><tspan x="0" y="0">Tipo</tspan></text>
+                  </g>
+                  <g id="Product-5" data-name="Product" transform="translate(0 25.484)">
+                    <rect id="Label-4" data-name="Label" width="8" height="8" rx="4" transform="translate(0 2.618)" fill="#dae0e3"/>
+                    <text id="Poupança_Itaú-4" data-name="Poupança Itaú" transform="translate(12.066 10.516)" fill="#627179" font-size="12" font-family="Montserrat-Medium, Montserrat" font-weight="500"><tspan x="0" y="0">Tipo</tspan></text>
+                  </g>
+                  <g id="Product-6" data-name="Product" transform="translate(136 25.484)">
+                    <rect id="Label-5" data-name="Label" width="8" height="8" rx="4" transform="translate(0 2.618)" fill="#dae0e3"/>
+                    <text id="Poupança_Itaú-5" data-name="Poupança Itaú" transform="translate(12.066 10.516)" fill="#627179" font-size="12" font-family="Montserrat-Medium, Montserrat" font-weight="500"><tspan x="0" y="0">Tipo</tspan></text>
+                  </g>
+                  <g id="Product-7" data-name="Product" transform="translate(272 25.484)">
+                    <rect id="Label-6" data-name="Label" width="8" height="8" rx="4" transform="translate(0 2.618)" fill="#dae0e3"/>
+                    <text id="Poupança_Itaú-6" data-name="Poupança Itaú" transform="translate(12.066 10.516)" fill="#627179" font-size="12" font-family="Montserrat-Medium, Montserrat" font-weight="500"><tspan x="0" y="0">Tipo</tspan></text>
+                  </g>
+                </g>
+                <text id="Poupança_Itaú-7" data-name="Poupança Itaú" transform="translate(267 1370.333)" fill="#627179" font-size="18" font-family="Montserrat-Medium, Montserrat" font-weight="500"><tspan x="0" y="0">Divisão de Carteira por Tipos</tspan></text>
+                <line id="Linha_274" data-name="Linha 274" x2="535.978" transform="translate(249.5 1389.833)" fill="none" stroke="#eef2f4" stroke-width="1"/>
+                <line id="Linha_275" data-name="Linha 275" x2="535.978" transform="translate(249.5 1701.833)" fill="none" stroke="#eef2f4" stroke-width="1"/>
+              </g>
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" width="600" height="508.236" viewBox="0 0 600 508.236">
+              <g id="Grupo_12121" data-name="Grupo 12121" transform="translate(-219 -1308)">
+                <g transform="matrix(1, 0, 0, 1, 219, 1308)" filter="url(#Statistics.BG)">
+                  <rect id="Statistics.BG-2" data-name="Statistics.BG" width="540" height="448.236" rx="10" transform="translate(30 28)" fill="#fff"/>
+                </g>
+                <g id="Grupo_11084" data-name="Grupo 11084" transform="translate(369.568 1406.333)">
+                  <path id="Caminho_3473" data-name="Caminho 3473" d="M596.926,97.506l-27,47.974a79.442,79.442,0,0,1-28.224,147.954l7.442,54.552c66.333-9.05,116.318-66.318,116.318-133.265A134.65,134.65,0,0,0,596.926,97.506Z" transform="translate(-396.468 -80.222)" fill="#9e51ba"/>
+                  <path id="Caminho_3474" data-name="Caminho 3474" d="M571.641,150.783l26.947-48A134.489,134.489,0,0,0,541.325,85.84l-3.51,54.945A78.964,78.964,0,0,1,571.641,150.783Z" transform="translate(-398.252 -85.566)" fill="#0dd1e3"/>
+                  <path id="Caminho_3475" data-name="Caminho 3475" d="M576.6,299.608a79.457,79.457,0,0,1,0-158.914c1.7,0,3.387.073,5.064.178l3.51-54.945q-4.282-.273-8.574-.274c-73.785,0-134.5,60.715-134.5,134.5s60.715,134.5,134.5,134.5a134.588,134.588,0,0,0,18.19-1.235l-7.446-54.55A80.09,80.09,0,0,1,576.6,299.608Z" transform="translate(-442.098 -85.652)" fill="#ff8052"/>
+                </g>
+                <g id="Product" transform="translate(308 1723.334)" clip-path="url(#clip-path)">
+                  <g id="Product-2" data-name="Product" transform="translate(0 1.484)">
+                    <rect id="Label" width="8" height="8" rx="4" transform="translate(0 2.618)" fill="#dae0e3"/>
+                    <text id="Poupança_Itaú" data-name="Poupança Itaú" transform="translate(12.066 10.516)" fill="#627179" font-size="12" font-family="Montserrat-Medium, Montserrat" font-weight="500"><tspan x="0" y="0">Título</tspan></text>
+                  </g>
+                  <g id="Product-3" data-name="Product" transform="translate(136 1.484)">
+                    <rect id="Label-2" data-name="Label" width="8" height="8" rx="4" transform="translate(0 2.618)" fill="#dae0e3"/>
+                    <text id="Poupança_Itaú-2" data-name="Poupança Itaú" transform="translate(12.066 10.516)" fill="#627179" font-size="12" font-family="Montserrat-Medium, Montserrat" font-weight="500"><tspan x="0" y="0">Título</tspan></text>
+                  </g>
+                  <g id="Product-4" data-name="Product" transform="translate(272 1.484)">
+                    <rect id="Label-3" data-name="Label" width="8" height="8" rx="4" transform="translate(0 2.618)" fill="#dae0e3"/>
+                    <text id="Poupança_Itaú-3" data-name="Poupança Itaú" transform="translate(12.066 10.516)" fill="#627179" font-size="12" font-family="Montserrat-Medium, Montserrat" font-weight="500"><tspan x="0" y="0">Título</tspan></text>
+                  </g>
+                  <g id="Product-5" data-name="Product" transform="translate(0 25.484)">
+                    <rect id="Label-4" data-name="Label" width="8" height="8" rx="4" transform="translate(0 2.618)" fill="#dae0e3"/>
+                    <text id="Poupança_Itaú-4" data-name="Poupança Itaú" transform="translate(12.066 10.516)" fill="#627179" font-size="12" font-family="Montserrat-Medium, Montserrat" font-weight="500"><tspan x="0" y="0">Título</tspan></text>
+                  </g>
+                  <g id="Product-6" data-name="Product" transform="translate(136 25.484)">
+                    <rect id="Label-5" data-name="Label" width="8" height="8" rx="4" transform="translate(0 2.618)" fill="#dae0e3"/>
+                    <text id="Poupança_Itaú-5" data-name="Poupança Itaú" transform="translate(12.066 10.516)" fill="#627179" font-size="12" font-family="Montserrat-Medium, Montserrat" font-weight="500"><tspan x="0" y="0">Título</tspan></text>
+                  </g>
+                  <g id="Product-7" data-name="Product" transform="translate(272 25.484)">
+                    <rect id="Label-6" data-name="Label" width="8" height="8" rx="4" transform="translate(0 2.618)" fill="#dae0e3"/>
+                    <text id="Poupança_Itaú-6" data-name="Poupança Itaú" transform="translate(12.066 10.516)" fill="#627179" font-size="12" font-family="Montserrat-Medium, Montserrat" font-weight="500"><tspan x="0" y="0">Título</tspan></text>
+                  </g>
+                </g>
+                <text id="Poupança_Itaú-7" data-name="Poupança Itaú" transform="translate(267 1370.333)" fill="#627179" font-size="18" font-family="Montserrat-Medium, Montserrat" font-weight="500"><tspan x="0" y="0">Divisão de Carteira por Título</tspan></text>
+                <line id="Linha_274" data-name="Linha 274" x2="539.5" transform="translate(249.5 1389.833)" fill="none" stroke="#eef2f4" stroke-width="1"/>
+                <line id="Linha_275" data-name="Linha 275" x2="539.5" transform="translate(249.5 1701.833)" fill="none" stroke="#eef2f4" stroke-width="1"/>
+              </g>
+            </svg>
+          </div>
+
+
         </section>
       </main>
     </Wrapper>

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { convertNumberToCurrency } from "../utils";
 
 type Props = {}
 
@@ -26,7 +27,7 @@ const Navbar = (props:any) => {
           </g>
           <g id="Grupo_11775" data-name="Grupo 11775" transform="translate(-51)">
             <g id="Grupo_11762" data-name="Grupo 11762" transform="translate(-226 -6)">
-              <text id="Poupança_Itaú" data-name="Poupança Itaú" transform="translate(899 62)" fill="#707b81" fontSize="16" fontFamily="Montserrat-Bold, Montserrat" fontWeight="700"><tspan x="0" y="0">{ props.data.equity }</tspan></text>
+              <text id="Poupança_Itaú" data-name="Poupança Itaú" transform="translate(899 62)" fill="#707b81" fontSize="16" fontFamily="Montserrat-Bold, Montserrat" fontWeight="700"><tspan x="0" y="0">{ convertNumberToCurrency(props.data.equity) }</tspan></text>
               <text id="Poupança_Itaú-2" data-name="Poupança Itaú" transform="translate(899 45)" fill="#707b81" fontSize="8" fontFamily="Montserrat-Regular, Montserrat" letterSpacing="0.05em"><tspan x="0" y="0">SALDO BRUTO</tspan></text>
             </g>
             <g id="Grupo_11763" data-name="Grupo 11763" transform="translate(941 4207)">
@@ -39,7 +40,7 @@ const Navbar = (props:any) => {
           </g>
           <g id="Grupo_11774" data-name="Grupo 11774" transform="translate(-60)">
             <g id="Grupo_11764" data-name="Grupo 11764" transform="translate(-225 -6)">
-              <text id="Poupança_Itaú-3" data-name="Poupança Itaú" transform="translate(1092 62)" fill="#707b81" fontSize="16" fontFamily="Montserrat-Bold, Montserrat" fontWeight="700"><tspan x="0" y="0"> { props.data.valueApplied }</tspan></text>
+              <text id="Poupança_Itaú-3" data-name="Poupança Itaú" transform="translate(1092 62)" fill="#707b81" fontSize="16" fontFamily="Montserrat-Bold, Montserrat" fontWeight="700"><tspan x="0" y="0"> { convertNumberToCurrency(props.data.valueApplied) }</tspan></text>
               <text id="Poupança_Itaú-4" data-name="Poupança Itaú" transform="translate(1092 45)" fill="#707b81" fontSize="8" fontFamily="Montserrat-Regular, Montserrat" letterSpacing="0.05em"><tspan x="0" y="0">VALOR APLICADO</tspan></text>
             </g>
             <g id="Grupo_11765" data-name="Grupo 11765" transform="translate(948 4203)">
