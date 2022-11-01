@@ -252,8 +252,6 @@ function App() {
               </g>
             </svg>
           </div>
-
-
         </section>
       </main>
     </Wrapper>

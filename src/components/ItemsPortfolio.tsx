@@ -1,6 +1,7 @@
 import TitleItem from "./TitleItem"
 import styled from "styled-components";
 import { convertNumberToCurrency, editDate } from "../utils";
+import { useEffect, useState } from "react";
 
 const Wrapper = styled.main`
   display: flex;
@@ -98,6 +99,11 @@ const Wrapper = styled.main`
   .subtitle svg:first-child {
     margin-right: 1rem;
   }
+  .subtitle select {
+    padding: 0.2rem;
+    border-radius: 0.5rem;
+    box-shadow: 0px 0px 5px #ccc;
+  }
   .second__title {
     color: #627179;
     font-size: 18px;
@@ -113,12 +119,38 @@ type Props = {}
 
 const ItemsPortfolio = (props: any) => {
   console.log(props.data);
+  const [selected, setSelected] = useState();
+  const [search, setSearch] = useState('');
+  const [data, setData] = useState(props.data);
+
+  useEffect(() => {
+    const temp = props.data.sort(function(a: { position: { ['valueApplied']: number; }; },b: { position: { valueApplied: number; }; }) {
+      return a.position.valueApplied > b.position.valueApplied ? -1 : a.position.valueApplied < b.position.valueApplied ? 1 : 0;
+  });
+    setData(temp);
+    console.log(selected);
+    console.log(temp);
+  
+  }, [selected])
+  
+  function handleChange(event: { target: { value: any; }; }) {
+    setSelected(event.target.value);
+  }
 
   return (
     <Wrapper>
       <div className='subtitle'>
         <h2 className='second__title'>Minhas Rendas Fixas</h2>
         <div>
+          <select name="order" id="order" value={selected} onChange={handleChange}>
+            <option value="order">Ordenar por</option>
+            <option value="valorinves">VALOR INVES.</option>
+            <option value="saldobruto">SALDO BRUTO</option>
+            <option value="rent">RENT.</option>
+            <option value="cart">% DA CART.</option>
+            <option value="CDI">CDI</option>
+            <option value="data">DATA VENC.</option>
+          </select>
           <svg xmlns="http://www.w3.org/2000/svg" width="155" height="32" viewBox="0 0 155 32">
             <g id="Selectbox.Filter" transform="translate(-7)">
               <g id="Selectbox.BG" transform="translate(7)" fill="#fff" stroke="#d6d9dd" stroke-width="1">
@@ -140,7 +172,7 @@ const ItemsPortfolio = (props: any) => {
           </svg>
         </div>
       </div>
-      { props.data.map((item:any)=>{
+      { data.map((item:any)=>{
         return (
           <div className="item">
             <div className="wrapper">
