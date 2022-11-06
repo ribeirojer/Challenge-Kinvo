@@ -324,10 +324,10 @@ const ItemsPortfolio = (props: any) => {
         )
       })}
       <div className="botons">
-        <button onClick={()=>setPagina(pagina-5)}>&#10094;</button>
+        <button onClick={()=>setPagina(pagina-5)} disabled={!pagina}>&#10094;</button>
         <button id="btn-1" className="active" onClick={()=>setPagina(0)}>1</button>
         <button id="btn-2" onClick={()=>setPagina(5)}>2</button>
-        <button onClick={()=>setPagina(pagina+5)}>&#10095;</button>
+        <button onClick={()=>setPagina(pagina+5)} disabled={pagina===5}>&#10095;</button>
       </div>
     </Wrapper>
   )
