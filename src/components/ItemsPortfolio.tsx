@@ -7,6 +7,7 @@ import { MagnifyingGlass } from "phosphor-react";
 const Wrapper = styled.main`
   display: flex;
   flex-direction: column;
+  max-height: 1074px;
   margin: 1rem 1.5rem 0 1.5rem;
   background-color: #fff;
   border-radius: 0.5rem;
