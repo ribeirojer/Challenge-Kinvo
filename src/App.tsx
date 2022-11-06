@@ -26,11 +26,62 @@ const Wrapper = styled.main`
     font-weight: 700;
   }
 `;
+export interface RootObject { 
+  isLoading: boolean;
+  data: Data;
+  error?: null;
+}
+export interface Data { 
+  snapshotByPortfolio: SnapshotByPortfolio;
+  dailyEquityByPortfolioChartData?: (DailyEquityByPortfolioChartData)[] | null;
+  snapshotByProduct?: (SnapshotByProduct)[] | null;
+}
+export interface SnapshotByPortfolio { 
+  equity: number;
+  valueApplied: number;
+  equityProfit: number;
+  percentageProfit: number;
+  indexerValue: number;
+  percentageOverIndexer: number;
+}
+export interface DailyEquityByPortfolioChartData { 
+  correctedQuota: number;
+  dailyReferenceDate: number;
+  movementTypeId: number;
+  portfolioProductId: number;
+  productName: string;
+  value: number;
+}
+export interface Due { 
+  date: string;
+  daysUntilExpiration: number;
+}
+export interface SnapshotByProduct { 
+  due: Due;
+  fixedIncome: FixedIncome;
+  hasBalance: number;
+  position: Position;
+  productHasQuotation: number;
+}
+export interface FixedIncome { 
+  bondType: string;
+  name: string;
+  portfolioProductId: number;
+}
+export interface Position { 
+  equity: number;
+  indexerLabel: string;
+  indexerValue: number;
+  percentageOverIndexer: number;
+  portfolioPercentage: number;
+  profitability: number;
+  valueApplied: number;
+}
 
 function App() {
   
   const url = 'https://6270328d6a36d4d62c16327c.mockapi.io/getFixedIncomeClassData';
-  const { data: Data, isLoading, error} = useFetch(url);
+  const { data: datas, isLoading, error} = useFetch(url);
 
   if(isLoading){
     return <p>Carregando...</p>
@@ -39,8 +90,8 @@ function App() {
     return <p>Houve um problema...</p>
   }
 
-  const { data }:any = Data;
-  const { snapshotByPortfolio, snapshotByProduct }:any = data;
+  const { data }:any = datas;
+  const { snapshotByPortfolio, snapshotByProduct }:Data = data;
 
   return (
     <Wrapper>
@@ -51,6 +102,29 @@ function App() {
           <h2 className='first__title'>Renda Fixa</h2>
           <ItemsFront data={snapshotByPortfolio}/>
           <svg className='chart1' xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
+            <defs>
+              <filter id="Chart.BG" x="0" y="0" width="1108" height="366" filterUnits="userSpaceOnUse">
+                <feOffset dy="2"/>
+                <feGaussianBlur stdDeviation="3" result="blur"/>
+                <feFlood flood-opacity="0.039"/>
+                <feComposite operator="in" in2="blur"/>
+                <feComposite in="SourceGraphic"/>
+              </filter>
+              <clipPath id="clip-path">
+                <rect width="984" height="14" fill="none"/>
+              </clipPath>
+              <linearGradient id="linear-gradient" x1="0.5" y1="-0.833" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+                <stop offset="0" stop-color="#a3a1fb"/>
+                <stop offset="1" stop-color="#a3a1fb" stop-opacity="0.102"/>
+              </linearGradient>
+              <linearGradient id="linear-gradient-2" x1="0.5" y1="-0.833" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+                <stop offset="0" stop-color="#56d9fe"/>
+                <stop offset="1" stop-color="#56d9fe" stop-opacity="0.11"/>
+              </linearGradient>
+              <clipPath id="clip-path-2">
+                <rect width="1002" height="225.953" fill="none"/>
+              </clipPath>
+            </defs>
             <g id="Grupo_4343" data-name="Grupo 4343" transform="translate(9 7)">
               <g transform="matrix(1, 0, 0, 1, -9, -7)" filter="url(#Chart.BG)">
                 <rect id="Chart.BG-2" data-name="Chart.BG" width="1090" height="348" rx="10" transform="translate(9 7)" fill="#fff"/>

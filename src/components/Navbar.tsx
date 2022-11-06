@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { convertNumberToCurrency } from "../utils";
-
+import { SnapshotByPortfolio } from '../App'
 type Props = {}
 
 const Header = styled.header`
@@ -17,7 +17,7 @@ const Header = styled.header`
 `;
 
 const Navbar = (props:any) => {
-
+ console.log(props)
   return (
     <Header>
       <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" >

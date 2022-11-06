@@ -23,6 +23,7 @@ const Wrapper = styled.main`
         font-weight: 500;
     }
 `;
+
 const LastChart = (props: any) => {
     
     const [options, setOptions] = useState({
@@ -38,6 +39,7 @@ const LastChart = (props: any) => {
         height:380,
         chartArea:{left:0, top:0, width:'100%',height:'75%'},
         is3D: false,
+        colors: ['#0DD1E3', '#9E51BA', '#FF8052', '#CCCCCC', '#5D41AC', '#89D5FD'],
         legend: {position: 'bottom', textStyle: {fontSize: 12}}
       })
     const equityTesouroDireto = SomaPorTipo(props.data, "Tesouro Direto");
