@@ -106,7 +106,7 @@ function App() {
               <filter id="Chart.BG" x="0" y="0" width="1108" height="366" filterUnits="userSpaceOnUse">
                 <feOffset dy="2"/>
                 <feGaussianBlur stdDeviation="3" result="blur"/>
-                <feFlood flood-opacity="0.039"/>
+                <feFlood floodOpacity="0.039"/>
                 <feComposite operator="in" in2="blur"/>
                 <feComposite in="SourceGraphic"/>
               </filter>
@@ -114,12 +114,12 @@ function App() {
                 <rect width="984" height="14" fill="none"/>
               </clipPath>
               <linearGradient id="linear-gradient" x1="0.5" y1="-0.833" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
-                <stop offset="0" stop-color="#a3a1fb"/>
-                <stop offset="1" stop-color="#a3a1fb" stop-opacity="0.102"/>
+                <stop offset="0" stopColor="#a3a1fb"/>
+                <stop offset="1" stopColor="#a3a1fb" stopOpacity="0.102"/>
               </linearGradient>
               <linearGradient id="linear-gradient-2" x1="0.5" y1="-0.833" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
-                <stop offset="0" stop-color="#56d9fe"/>
-                <stop offset="1" stop-color="#56d9fe" stop-opacity="0.11"/>
+                <stop offset="0" stopColor="#56d9fe"/>
+                <stop offset="1" stopColor="#56d9fe" stopOpacity="0.11"/>
               </linearGradient>
               <clipPath id="clip-path-2">
                 <rect width="1002" height="225.953" fill="none"/>

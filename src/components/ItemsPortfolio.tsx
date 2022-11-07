@@ -135,7 +135,6 @@ const Wrapper = styled.main`
     position: absolute;
     top: 6px;
     left: 6px;
-    z-index: 1;
   }
   .second__title {
     color: #627179;
@@ -268,7 +267,7 @@ const ItemsPortfolio = ({ data }: any) => {
       </div>
       { items && items.slice(pagina, pagina+5).map((item:SnapshotByProduct)=>{
         return (
-          <div className="item">
+          <div key={ item.fixedIncome.name } className="item">
             <div className="wrapper">
               <TitleItem title={'TÍTULO'}/>
               <div className="fixedIncome">

@@ -13,6 +13,7 @@ const Header = styled.header`
     background-color: #fff;
     box-shadow: 0px 0px 10px 0px #ccc;
     position: fixed;
+    z-index: 1;
   }
 `;
 
