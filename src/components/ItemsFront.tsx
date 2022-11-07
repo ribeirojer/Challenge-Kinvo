@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { convertNumberToCurrency } from "../utils"
+import { SnapshotByPortfolio } from '../App'
 
 const Wrapper = styled.div`
   display: flex;
@@ -41,43 +42,46 @@ const Wrapper = styled.div`
 
 type Props = {}
 
-const ItemsFront = (props: any) => {
+const ItemsFront = ({ data }:any) => {
+
+  const { equity, valueApplied, percentageProfit, equityProfit, indexerValue, percentageOverIndexer }:SnapshotByPortfolio = data;
+
   return (
     <Wrapper>
         <div className="item">
             <div className="border">
                 <p id="t1">SALDO BRUTO</p>
-                <p id="t2">R$ { convertNumberToCurrency(props.data.equity) }</p>
+                <p id="t2">R$ { convertNumberToCurrency({ number: equity }) }</p>
             </div>
         </div>
         <div className="item">
             <div className="border">
                 <p id="t1">VALOR APLICADO</p>
-                <p id="t2">R$ { convertNumberToCurrency(props.data.valueApplied) }</p>        
+                <p id="t2">R$ { convertNumberToCurrency({ number: valueApplied }) }</p>        
             </div>
         </div>
         <div className="item">
             <div className="border">
                 <p id="t1">RESULTADO</p>
-                <p id="t2">R$ { convertNumberToCurrency(props.data.equityProfit) }</p>        
+                <p id="t2">R$ { convertNumberToCurrency({ number: equityProfit }) }</p>        
             </div>
         </div>
         <div className="item">
             <div className="border">
                 <p id="t1">RENTABILIDADE</p>
-                <p id="t2">{ props.data.percentageProfit }%</p>        
+                <p id="t2">{ percentageProfit }%</p>        
             </div>
         </div>
         <div className="item">
             <div className="border">
                 <p id="t1">CDI</p>
-                <p id="t2">{ props.data.indexerValue }%</p>        
+                <p id="t2">{ indexerValue }%</p>        
             </div>
         </div>
         <div className="item">
             <div className="border">
                 <p id="t1">% SOBRE CDI</p>
-                <p id="t2">{ props.data.percentageOverIndexer }%</p>        
+                <p id="t2">{ percentageOverIndexer }%</p>        
             </div>
         </div>
     </Wrapper>

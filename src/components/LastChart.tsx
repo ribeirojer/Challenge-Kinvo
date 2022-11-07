@@ -24,7 +24,7 @@ const Wrapper = styled.main`
     }
 `;
 
-const LastChart = (props: any) => {
+const LastChart = ({ data }: any) => {
     
     const [options, setOptions] = useState({
       pieHole: 0.6,
@@ -33,7 +33,7 @@ const LastChart = (props: any) => {
       is3D: false,
       colors: ['#0DD1E3', '#9E51BA', '#FF8052'],
       legend: {position: 'bottom', textStyle: {fontSize: 12}}
-    })
+    });
     const [options2, setOptions2] = useState({
         pieHole: 0.6,
         height:380,
@@ -41,24 +41,25 @@ const LastChart = (props: any) => {
         is3D: false,
         colors: ['#0DD1E3', '#9E51BA', '#FF8052', '#CCCCCC', '#5D41AC', '#89D5FD'],
         legend: {position: 'bottom', textStyle: {fontSize: 12}}
-      })
-    const equityTesouroDireto = SomaPorTipo(props.data, "Tesouro Direto");
-    const equityRendaFixaPre = SomaPorTipo(props.data, "Renda Fixa Pré");
-    const equityRendaFixaPos = SomaPorTipo(props.data, "Renda Fixa Pós");
+    });
+    const equityTesouroDireto = SomaPorTipo({ data, tipo: "Tesouro Direto" });
+    const equityRendaFixaPre = SomaPorTipo({ data, tipo: "Renda Fixa Pré" });
+    const equityRendaFixaPos = SomaPorTipo({ data, tipo: "Renda Fixa Pós" });
 
-    const [data, setData] = useState([
+    const [dataChart1, setData] = useState([
         ['Tipos', 'Quantidade'],
         ['Tesouro Direto', equityTesouroDireto],
         ['Renda Fixa Pré', equityRendaFixaPre],
         ['Renda Fixa Pós', equityRendaFixaPos],
-    ])
+    ]);
 
-    const titulos = props.data.map((item:any)=>{
+    const titulos = data.map((item:any)=>{
         return [ item.fixedIncome.name, item.position.equity];
     });
 
-    const [data2, setData2] = useState([
-        ['Tipos', 'Quantidade'], ...titulos]);
+    const [dataChart2, setData2] = useState([
+        ['Tipos', 'Quantidade'], ...titulos
+    ]);
 
   return (
     <Wrapper>
@@ -68,7 +69,7 @@ const LastChart = (props: any) => {
             width={'500px'}
             height={'300px'}
             chartType="PieChart"
-            data={data}
+            data={dataChart1}
             options={options}
             />
         </div>
@@ -78,7 +79,7 @@ const LastChart = (props: any) => {
                 width={'500px'}
                 height={'300px'}
                 chartType="PieChart"
-                data={data2}
+                data={dataChart2}
                 options={options2}
             />
         </div>

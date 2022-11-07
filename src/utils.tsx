@@ -1,14 +1,14 @@
-export function convertNumberToCurrency (number: number): string {
+export function convertNumberToCurrency ({ number }: { number: number; }): string {
     const currency = number.toLocaleString('pt-br', { minimumFractionDigits: 2}); 
     return currency;
   }
 
-export function editDate (date: string): string {
+export function editDate ({ date }: { date: string; }): string {
     const formated = date.replaceAll('/','.'); 
     return formated;
 }
 
-export function SomaPorTipo (data: any, tipo: string){
+export function SomaPorTipo ({ data, tipo }: { data: any; tipo: string; }): any{
   const initialValue = 0;
   const quantidade = data
   .filter((item: any)=>{

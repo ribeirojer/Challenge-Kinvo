@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { convertNumberToCurrency, editDate } from "../utils";
 import { useEffect, useState } from "react";
 import { MagnifyingGlass } from "phosphor-react";
+import { SnapshotByProduct } from "../App";
 
 const Wrapper = styled.main`
   display: flex;
@@ -166,12 +167,12 @@ const Wrapper = styled.main`
 
 type Props = {}
 
-const ItemsPortfolio = (props: any) => {
+const ItemsPortfolio = ({ data }: any) => {
 
   const [selected, setSelected] = useState('');
   const [search, setSearch] = useState('');
   const [pagina, setPagina] = useState(0);
-  const [data, setData] = useState(props.data);
+  const [items, setItems] = useState<SnapshotByProduct[]>(data);
   const button1 = document.getElementById('btn-1');
   const button2 = document.getElementById('btn-2');
 
@@ -189,54 +190,54 @@ const ItemsPortfolio = (props: any) => {
   function handleChange (event: { target: { value: any; }; }) {
     setSelected(event.target.value);
     if(event.target.value === 'valueApplied'){
-      let temp = data.sort(function(a: { position: { ['valueApplied']: number; }; },b: { position: { ['valueApplied']: number; }; }) {
+      let temp = items.sort(function(a: { position: { ['valueApplied']: number; }; },b: { position: { ['valueApplied']: number; }; }) {
         return a.position['valueApplied'] > b.position['valueApplied'] ? -1 : a.position['valueApplied'] < b.position['valueApplied'] ? 1 : 0;
       });
-      setData(temp);
+      setItems(temp);
     }
     if(event.target.value === 'equity'){
-      let temp = data.sort(function(a: { position: { ['equity']: number; }; },b: { position: { ['equity']: number; }; }) {
+      let temp = items.sort(function(a: { position: { ['equity']: number; }; },b: { position: { ['equity']: number; }; }) {
         return a.position['equity'] > b.position['equity'] ? -1 : a.position['equity'] < b.position['equity'] ? 1 : 0;
       });
-      setData(temp);
+      setItems(temp);
     }
     if(event.target.value === 'profitability'){
-      let temp = data.sort(function(a: { position: { ['profitability']: number; }; },b: { position: { ['profitability']: number; }; }) {
+      let temp = items.sort(function(a: { position: { ['profitability']: number; }; },b: { position: { ['profitability']: number; }; }) {
         return a.position['profitability'] > b.position['profitability'] ? -1 : a.position['profitability'] < b.position['profitability'] ? 1 : 0;
       });
-      setData(temp);
+      setItems(temp);
     }
     if(event.target.value === 'portfolioPercentage'){
-      let temp = data.sort(function(a: { position: { ['portfolioPercentage']: number; }; },b: { position: { ['portfolioPercentage']: number; }; }) {
+      let temp = items.sort(function(a: { position: { ['portfolioPercentage']: number; }; },b: { position: { ['portfolioPercentage']: number; }; }) {
         return a.position['portfolioPercentage'] > b.position['portfolioPercentage'] ? -1 : a.position['portfolioPercentage'] < b.position['portfolioPercentage'] ? 1 : 0;
       });
-      setData(temp);
+      setItems(temp);
     }
     if(event.target.value === 'indexerValue'){
-      let temp = data.sort(function(a: { position: { ['indexerValue']: number; }; },b: { position: { ['indexerValue']: number; }; }) {
+      let temp = items.sort(function(a: { position: { ['indexerValue']: number; }; },b: { position: { ['indexerValue']: number; }; }) {
         return a.position['indexerValue'] > b.position['indexerValue'] ? -1 : a.position['indexerValue'] < b.position['indexerValue'] ? 1 : 0;
       });
-      setData(temp);
+      setItems(temp);
     }
     if(event.target.value === 'percentageOverIndexer'){
-      let temp = data.sort(function(a: { position: { ['percentageOverIndexer']: number; }; },b: { position: { ['percentageOverIndexer']: number; }; }) {
+      let temp = items.sort(function(a: { position: { ['percentageOverIndexer']: number; }; },b: { position: { ['percentageOverIndexer']: number; }; }) {
         return a.position['percentageOverIndexer'] > b.position['percentageOverIndexer'] ? -1 : a.position['percentageOverIndexer'] < b.position['percentageOverIndexer'] ? 1 : 0;
       });
-      setData(temp);
+      setItems(temp);
     }
     if(event.target.value === 'daysUntilExpiration'){
-      let temp = data.sort(function(a: { due: { ['daysUntilExpiration']: number; }; },b: { due: { ['daysUntilExpiration']: number; }; }) {
+      let temp = items.sort(function(a: { due: { ['daysUntilExpiration']: number; }; },b: { due: { ['daysUntilExpiration']: number; }; }) {
         return a.due['daysUntilExpiration'] > b.due['daysUntilExpiration'] ? -1 : a.due['daysUntilExpiration'] < b.due['daysUntilExpiration'] ? 1 : 0;
       });
-      setData(temp);
+      setItems(temp);
     }
   }
   function handleSubmit (event: any) {
       event.preventDefault();
-      let temp = props.data.filter((item:any)=>{
+      let temp = data.filter((item:any)=>{
         return item.fixedIncome.name.includes(search);
       });
-      setData(temp);
+      setItems(temp);
   }
   function handleChangeInput (event: { target: { value: any; }; }) {
     setSearch( event.target.value);
@@ -265,7 +266,7 @@ const ItemsPortfolio = (props: any) => {
           </form>
         </div>
       </div>
-      { data && data.slice(pagina, pagina+5).map((item:any)=>{
+      { items && items.slice(pagina, pagina+5).map((item:SnapshotByProduct)=>{
         return (
           <div className="item">
             <div className="wrapper">
@@ -283,27 +284,27 @@ const ItemsPortfolio = (props: any) => {
               <div className="segundo">
                 <div>
                   <span>VALOR INVES.</span>
-                  <p className="position">{ convertNumberToCurrency(item.position.valueApplied) }</p>
+                  <p className="position">{ convertNumberToCurrency({ number: item.position.valueApplied }) }</p>
                 </div>
                 <div>
                   <span>SALDO BRUTO</span>
-                  <p className="position">{ convertNumberToCurrency(item.position.equity) }</p>
+                  <p className="position">{ convertNumberToCurrency({ number: item.position.equity }) }</p>
                 </div>
                 <div>
                   <span>RENT.</span>
-                  <p className="position">{ convertNumberToCurrency(item.position.profitability) }%</p>
+                  <p className="position">{ convertNumberToCurrency({ number: item.position.profitability }) }%</p>
                 </div>
                 <div>
                   <span>% DA CART.</span>
-                  <p className="position">{ convertNumberToCurrency(item.position.portfolioPercentage) }%</p>
+                  <p className="position">{ convertNumberToCurrency({ number: item.position.portfolioPercentage }) }%</p>
                 </div>
                 <div>
                   <span>CDI</span>
-                  <p className="position">{ convertNumberToCurrency(item.position.indexerValue) }</p>
+                  <p className="position">{ convertNumberToCurrency({ number: item.position.indexerValue }) }</p>
                 </div>
                 <div>
                   <span>SOBRE CDI</span>
-                  <p className="position">{ convertNumberToCurrency(item.position.percentageOverIndexer) }</p>
+                  <p className="position">{ convertNumberToCurrency({ number: item.position.percentageOverIndexer }) }</p>
                 </div>
               </div>
             </div>
@@ -312,7 +313,7 @@ const ItemsPortfolio = (props: any) => {
               <div className="terceiro">
                 <div>
                   <span>DATA VENC.</span>
-                  <p>{ editDate(item.due.date) }</p>
+                  <p>{ editDate({ date: item.due.date }) }</p>
                 </div>
                 <div>
                   <span>DIAS ATÉ VENC.</span>
